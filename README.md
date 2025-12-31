@@ -32,7 +32,7 @@ Asegúrate de tener instalado lo siguiente antes de ejecutar el proyecto:
 
 1.  **Clonar el repositorio:**
     ```bash
-    git clone <URL_DE_TU_REPOSITORIO>
+    git clone git@github.com:devTato1/pet-store-challenge.git
     ```
 
 2.  **Ir al directorio del proyecto:**
