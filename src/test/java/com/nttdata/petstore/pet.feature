@@ -8,7 +8,7 @@ Feature: Gestión de mascotas en PetStore
     * def headers = { 'Content-Type': 'application/json', 'Accept': 'application/json' }
 
   @Ejecucion
-  Scenario: Añadir, consultar y modificar una mascota (Ciclo de vida completo)
+  Scenario: Crear, consultar y modificar la mascota
 
     # ----------------------------------------------------------------
     # 1. Añadir una mascota a la tienda
@@ -18,10 +18,18 @@ Feature: Gestión de mascotas en PetStore
     """
     {
       "id": 0,
-      "category": { "id": 1, "name": "Perros" },
-      "name": "Firulais",
+      "category": {
+                    "id": 1,
+                    "name": "Perros"
+                    },
+      "name": "Tato",
       "photoUrls": ["http://foto.com/perro.jpg"],
-      "tags": [{ "id": 1, "name": "tierno" }],
+      "tags": [
+          {
+       "id": 1,
+       "name": "tierno"
+       }
+       ],
       "status": "available"
     }
     """
