@@ -1,0 +1,15 @@
+CONCLUSIONES
+
+El presente repositorio permitio validar un flujo End-to-End (E2E) de gestion en la API PetStore, abarcando la creacion, consulta y actualizacion de mascotas para mantener el inventario al dia y cumplir con los requisitos del challenge.
+
+Para la implementacion se utilizo:
+1) Karate 1.4.1 junto con la sintaxis Gherkin, lo que permitio describir el comportamiento esperado en un lenguaje funcional y mantenible, apoyandose en el runner JUnit `PetStoreRunner` para orquestar la ejecucion automatizada.
+2) Maven para la gestion del ciclo de vida de pruebas, lo que facilita a cualquier evaluador ejecutar `mvn test` y obtener los reportes estandarizados sin configuraciones adicionales.
+
+El flujo cubierto se enfocó en operaciones directas contra los endpoints principales de mascotas, priorizando el camino feliz para validar rapidamente la salud del servicio y mantener baja la complejidad del escenario. Otros recorridos, como eliminacion o validaciones negativas por datos inconsistentes, se reservaron para iteraciones futuras.
+
+La suite Karate ejecutada el 2025-12-31 07:51:11 a. m. confirma que la funcionalidad principal de gestion de mascotas esta estable: el feature com/nttdata/petstore/pet.feature obtuvo 1 escenario ejecutado con 1 paso exitoso y sin fallos, completando la corrida en 2201 ms, lo cual evidencia tiempos de respuesta bajos y consistentes.
+
+El reporte HTML generado (target/karate-reports/karate-summary.html) ofrece visibilidad detallada de cada paso, permitiendo rastrear los artefactos y comprobar la trazabilidad de los resultados.
+
+Como mejora futura, el proyecto podria ampliarse con escenarios negativos, pruebas de eliminacion, ejecuciones paralelas sobre distintos entornos y una mayor parametrizacion de datos para robustecer la cobertura y ganar confianza ante cambios evolutivos.
