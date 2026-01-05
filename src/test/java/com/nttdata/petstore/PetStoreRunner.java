@@ -5,7 +5,7 @@ import com.intuit.karate.Runner;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
-class PetStoreRunner {
+class PetStoreRunnerTest {
 
     @Test
     void testParallel() {
@@ -14,7 +14,6 @@ class PetStoreRunner {
                 .outputCucumberJson(true)
                 .parallel(1);
 
-        // Esto hace que la prueba falle en JUnit si Karate encontró errores
         assertEquals(0, results.getFailCount(), results.getErrorMessages());
     }
 }
