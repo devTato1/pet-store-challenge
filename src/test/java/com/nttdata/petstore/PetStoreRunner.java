@@ -9,10 +9,10 @@ class PetStoreRunner {
 
     @Test
     void testParallel() {
-        Results results = Runner.path("classpath:com/nttdata/petstore") // Ruta a tus .feature
-                .tags("@Ejecucion")       // El tag que pusimos en el feature
-                .outputCucumberJson(true) // ¡ESTO GENERA EL REPORTE JSON!
-                .parallel(1);             // 1 hilo (secuencial)
+        Results results = Runner.path("classpath:com/nttdata/petstore")
+                .tags("@HappyPath")
+                .outputCucumberJson(true)
+                .parallel(1);
 
         // Esto hace que la prueba falle en JUnit si Karate encontró errores
         assertEquals(0, results.getFailCount(), results.getErrorMessages());

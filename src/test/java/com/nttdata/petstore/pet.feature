@@ -7,7 +7,7 @@ Feature: Gestión de mascotas en PetStore
     * url 'https://petstore.swagger.io/v2'
     * def headers = { 'Content-Type': 'application/json', 'Accept': 'application/json' }
 
-  @Ejecucion
+  @HappyPath
   Scenario: Crear, consultar y modificar la mascota
 
     # ----------------------------------------------------------------
