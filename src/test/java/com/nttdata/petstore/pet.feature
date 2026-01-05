@@ -1,15 +1,21 @@
 Feature: Gestión de mascotas en PetStore
-  Como usuario de la API
-  Quiero añadir, consultar y modificar mascotas
-  Para mantener el registro actualizado
 
   Background:
     * url 'https://petstore.swagger.io/v2'
-    * def headers = { 'Content-Type': 'application/json', 'Accept': 'application/json' }
+    # Definimos un objeto con todos los datos de prueba
+    * def petData =
+    """
+    {
+      "initialName": "Tato",
+      "updatedName": "Firulais Vendido",
+      "category": "Perros",
+      "status": "available",
+      "updatedStatus": "sold"
+    }
+    """
 
   @HappyPath
-  Scenario: Crear, consultar y modificar la mascota
-
+  Scenario: Flujo completo de vida de una mascota
     # ----------------------------------------------------------------
     # 1. Añadir una mascota a la tienda
     # ----------------------------------------------------------------
@@ -18,34 +24,25 @@ Feature: Gestión de mascotas en PetStore
     """
     {
       "id": 0,
-      "category": {
-                    "id": 1,
-                    "name": "Perros"
-                    },
-      "name": "Tato",
+      "category": { "id": 1, "name": "#(petData.category)" },
+      "name": "#(petData.initialName)",
       "photoUrls": ["http://foto.com/perro.jpg"],
-      "tags": [
-          {
-       "id": 1,
-       "name": "tierno"
-       }
-       ],
-      "status": "available"
+      "tags": [{ "id": 1, "name": "tierno" }],
+      "status": "#(petData.status)"
     }
     """
     When method post
     Then status 200
-    # Capturamos el ID generado para usarlo después
     * def petId = response.id
     * print 'Mascota creada con ID:', petId
 
     # ----------------------------------------------------------------
-    # 2. Consultar la mascota ingresada previamente (Búsqueda por ID)
+    # 2. Consultar la mascota ingresada (Validación de creación)
     # ----------------------------------------------------------------
     Given path '/pet', petId
     When method get
     Then status 200
-    And match response.name == 'Firulais'
+    And match response.name == petData.initialName
     And match response.id == petId
 
     # ----------------------------------------------------------------
@@ -56,26 +53,26 @@ Feature: Gestión de mascotas en PetStore
     """
     {
       "id": #(petId),
-      "category": { "id": 1, "name": "Perros" },
-      "name": "Firulais Vendido",
+      "category": { "id": 1, "name": "#(petData.category)" },
+      "name": "#(petData.updatedName)",
       "photoUrls": ["http://foto.com/perro.jpg"],
       "tags": [{ "id": 1, "name": "tierno" }],
-      "status": "sold"
+      "status": "#(petData.updatedStatus)"
     }
     """
     When method put
     Then status 200
-    And match response.status == 'sold'
-    And match response.name == 'Firulais Vendido'
+    And match response.status == petData.updatedStatus
+    And match response.name == petData.updatedName
 
     # ----------------------------------------------------------------
     # 4. Consultar la mascota modificada por estatus "sold"
     # ----------------------------------------------------------------
     Given path '/pet/findByStatus'
-    And param status = 'sold'
+    # Usamos la variable de estatus actualizado
+    And param status = petData.updatedStatus
     When method get
     Then status 200
-    # Validamos que NUESTRO id esté dentro de la lista que devuelve el servicio
-    # Karate permite buscar en arrays con "match response[*].id contains petId"
+    # Verificamos ID dinámico esté en la lista de resultados
     And match response[*].id contains petId
-    * print 'Validación exitosa: La mascota', petId, 'está en la lista de vendidos.'
+    * print 'Validación exitosa: La mascota con ID', petId, 'aparece como', petData.updatedStatus
