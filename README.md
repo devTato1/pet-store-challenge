@@ -1,9 +1,8 @@
-
-# 🐶 PetStore API Automation - Karate Framework
+# PetStore API Automation - Karate Framework
 
 Este repositorio contiene la solución automatizada para el reto técnico, donde se ha implementado un flujo End-to-End (E2E) para la gestión de mascotas en la API de [PetStore Swagger](https://petstore.swagger.io/), utilizando **Karate DSL**.
 
-## 📋 Descripción del Ejercicio
+## Descripción del Ejercicio
 
 El script automatizado cubre los metodos de creación, lectura, y escrituras de una mascota en la tienda, asegurando la integridad de los datos a través de las siguientes operaciones secuenciales:
 
@@ -12,15 +11,15 @@ El script automatizado cubre los metodos de creación, lectura, y escrituras de 
 3.  **Update:** Actualizar el nombre y el estatus de la mascota a "sold".
 4.  **Find:** Consultar la mascota modificada filtrando por estatus y validando su presencia en la lista.
 
-## 🛠️ Stack Tecnológico
+## Stack Tecnológico
 
 * **Lenguaje:** Java 17
 * **Framework:** [Karate DSL](https://github.com/karatelabs/karate) (v1.4.1)
-* **Build Tool:** Maven 3.9.11
+* **Build Tool:** Maven 3.9.11 o superior
 * **Test Runner:** JUnit 5
 * **IDE Recomendado:** IntelliJ IDEA
 
-## ⚙️ Prerrequisitos
+## Prerrequisitos
 
 Asegúrate de tener instalado lo siguiente antes de ejecutar el proyecto:
 
@@ -28,11 +27,11 @@ Asegúrate de tener instalado lo siguiente antes de ejecutar el proyecto:
 * **Maven** instalado y configurado en el `PATH`.
 * **Git** para clonar el repositorio.
 
-## 🚀 Instalación y Configuración
+## Instalación y Configuración
 
 1.  **Clonar el repositorio:**
     ```bash
-    git clone git@github.com:devTato1/pet-store-challenge.git
+    git clone https://github.com/devTato1/pet-store-challenge.git
     ```
 
 2.  **Ir al directorio del proyecto:**
@@ -45,7 +44,7 @@ Asegúrate de tener instalado lo siguiente antes de ejecutar el proyecto:
     mvn clean install -DskipTests
     ```
 
-## ▶️ Ejecución de las Pruebas
+## Ejecución de las Pruebas
 
 ### Desde Terminal (Maven)
 Para ejecutar el Runner principal y generar los reportes:
@@ -61,7 +60,7 @@ mvn test -Dtest=PetStoreRunner
 2. Haz clic derecho sobre el archivo o el método `testParallel()`.
 3. Selecciona **"Run 'PetStoreRunner'"**.
 
-## 📊 Reportes de Ejecución
+## Reportes de Ejecución
 
 Al finalizar la ejecución, Karate genera **automáticamente** reportes detallados.
 
@@ -72,7 +71,7 @@ Al finalizar la ejecución, Karate genera **automáticamente** reportes detallad
 
 Para ver el reporte visual, navega a la carpeta `target/karate-reports/` y abre el archivo `karate-summary.html` en tu navegador web.
 
-## 📂 Estructura del Proyecto
+##  Estructura del Proyecto
 
 ```text
 src/test/java/com/nttdata/petstore/
@@ -81,7 +80,7 @@ src/test/java/com/nttdata/petstore/
 
 ```
 
-## 📝 Notas Técnicas
+## Notas Técnicas
 
 * **Manejo de Datos Dinámicos:** Se capturan variables de la respuesta (`def petId = response.id`) para reutilizarlas en pasos posteriores, garantizando que siempre se interactúe con el registro creado en la ejecución actual.
 * **Validación de Arrays:** Se utiliza la sintaxis de Karate `match response[*].id contains petId` para validar la existencia de un objeto específico dentro de respuestas tipo lista.
